@@ -1,0 +1,85 @@
+-- Drop tables if they do exist already. --
+
+DROP TABLE IF EXISTS `SoundsInPresets`;
+DROP TABLE IF EXISTS `Presets`;
+DROP TABLE IF EXISTS `Sounds`;
+DROP TABLE IF EXISTS `Users`;
+DROP TABLE IF EXISTS `Genres`;
+DROP TABLE IF EXISTS `Categories`;
+DROP TABLE IF EXISTS `Roles`;
+
+
+-- CREATE TABLES --
+CREATE TABLE Roles(
+    `Id` INT NOT NULL AUTO_INCREMENT,
+    `Name` VARCHAR(20) COLLATE utf8_swedish_ci NOT NULL,
+    PRIMARY KEY(Id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+
+CREATE TABLE Categories(
+    `Id` INT NOT NULL AUTO_INCREMENT,
+    `Name` VARCHAR(30) COLLATE utf8_swedish_ci NOT NULL,
+    PRIMARY KEY(Id) 
+) engine = innoDB DEFAULT CHARSET=utf8 COLLATE utf8_swedish_ci;
+
+CREATE TABLE Genres(
+    `Id` INT NOT NULL AUTO_INCREMENT,
+    `Name` VARCHAR(30) COLLATE utf8_swedish_ci NOT NULL,
+    PRIMARY KEY(Id)
+) engine = innoDB DEFAULT CHARSET=utf8 COLLATE utf8_swedish_ci;
+
+
+CREATE TABLE Users(
+    `Id` INT NOT NULL AUTO_INCREMENT,
+    `Username` VARCHAR(20) COLLATE utf8_swedish_ci NOT NULL,
+    `Password` VARCHAR(32) NOT NULL,
+    `Email` VARCHAR(254) NOT NULL,
+    `RolesId` INT NOT NULL,
+    `Date_created` DATETIME NOT NULL DEFAULT current_timestamp(),
+    PRIMARY KEY(Id),
+    FOREIGN KEY(RolesId) REFERENCES Roles(Id)
+) engine = innoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+
+/* FIX - ändra till NOT NULL när allt funkar */
+CREATE TABLE Sounds(
+    `Id` INT NOT NULL AUTO_INCREMENT,
+    `Name` VARCHAR(40) COLLATE utf8_swedish_ci,
+    `Fileformat` VARCHAR(10),
+    `Bitrate` INT,
+    `Size` INT,
+    `CategoriesId` INT,
+    `GenresId` INT,
+    `Date_uploaded` DATETIME NOT NULL DEFAULT current_timestamp(),
+    `UsersId` INT,
+    PRIMARY KEY(Id),
+    FOREIGN KEY(CategoriesId) REFERENCES Categories(Id),
+    FOREIGN KEY(GenresId) REFERENCES Genres(Id),
+    FOREIGN KEY(UsersId) REFERENCES Users(Id)
+) engine = innoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+
+/* FIX - Ändra till NOT NULL på users/genres om det ska vara ofrivilligt */ 
+CREATE TABLE Presets(
+    `Id` INT NOT NULL AUTO_INCREMENT,
+    `Name` VARCHAR(30) COLLATE utf8_swedish_ci,
+    `Date_created` DATETIME NOT NULL DEFAULT current_timestamp(),
+    `UsersId` INT, 
+    `GenresId` INT,
+    PRIMARY KEY(Id),
+    FOREIGN KEY(UsersId) REFERENCES Users(Id),
+    FOREIGN KEY(GenresId) REFERENCES Genres(Id) 
+) engine = innoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+
+CREATE TABLE SoundsInPresets(
+    `Id` INT NOT NULL AUTO_INCREMENT,
+    `SoundsId` INT NOT NULL,
+    `PresetsId` INT NOT NULL,
+    PRIMARY KEY(Id),
+    FOREIGN KEY(SoundsId) REFERENCES Sounds(Id),
+    FOREIGN KEY(PresetsId) REFERENCES Presets(Id)
+) engine = innoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+
+INSERT INTO Roles(Name) VALUES ("Admin");
+INSERT INTO Roles(Name) VALUES ("User");
+
+INSERT INTO Users(Username, Password, Email, RolesId) VALUES ("admin", "5f4dcc3b5aa765d61d8327deb882cf99", "admin@example.com", 1);
+INSERT INTO Users(Username, Password, Email, RolesId) VALUES ("user", "5f4dcc3b5aa765d61d8327deb882cf99", "user@example.com", 2);
