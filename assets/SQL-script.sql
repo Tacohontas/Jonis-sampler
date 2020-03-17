@@ -51,6 +51,7 @@ CREATE TABLE Sounds(
     `GenresId` INT,
     `Date_uploaded` DATETIME NOT NULL DEFAULT current_timestamp(),
     `UsersId` INT,
+    `FileURL` TEXT NOT NULL COLLATE utf8_swedish_ci,
     PRIMARY KEY(Id),
     FOREIGN KEY(CategoriesId) REFERENCES Categories(Id),
     FOREIGN KEY(GenresId) REFERENCES Genres(Id),
@@ -73,13 +74,47 @@ CREATE TABLE SoundsInPresets(
     `Id` INT NOT NULL AUTO_INCREMENT,
     `SoundsId` INT NOT NULL,
     `PresetsId` INT NOT NULL,
+    `Datakey` INT NOT NULL,
     PRIMARY KEY(Id),
     FOREIGN KEY(SoundsId) REFERENCES Sounds(Id),
     FOREIGN KEY(PresetsId) REFERENCES Presets(Id)
 ) engine = innoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
 
+-- TEST DATA --
+
+
+-- ROLES
 INSERT INTO Roles(Name) VALUES ("Admin");
 INSERT INTO Roles(Name) VALUES ("User");
 
+-- USERS
 INSERT INTO Users(Username, Password, Email, RolesId) VALUES ("admin", "5f4dcc3b5aa765d61d8327deb882cf99", "admin@example.com", 1);
 INSERT INTO Users(Username, Password, Email, RolesId) VALUES ("user", "5f4dcc3b5aa765d61d8327deb882cf99", "user@example.com", 2);
+
+-- GENRES
+INSERT INTO Genres(Name) VALUES ("Hiphop");
+
+-- PRESETS
+INSERT INTO Presets(Name, UsersId, GenresId) VALUES ("TestPreset", 1, 1);
+
+-- SOUNDS
+INSERT INTO Sounds(Name, Fileformat, FileURL) VALUES ("boom", "wav", "assets/sounds/boom.wav");
+INSERT INTO Sounds(Name, Fileformat, FileURL) VALUES ("clap", "wav", "assets/sounds/clap.wav");
+INSERT INTO Sounds(Name, Fileformat, FileURL) VALUES ("hihat", "wav", "assets/sounds/hihat.wav");
+INSERT INTO Sounds(Name, Fileformat, FileURL) VALUES ("kick", "wav", "assets/sounds/kick.wav");
+INSERT INTO Sounds(Name, Fileformat, FileURL) VALUES ("openhat", "wav", "assets/sounds/openhat.wav");
+INSERT INTO Sounds(Name, Fileformat, FileURL) VALUES ("ride", "wav", "assets/sounds/ride.wav");
+INSERT INTO Sounds(Name, Fileformat, FileURL) VALUES ("snare", "wav", "assets/sounds/snare.wav");
+INSERT INTO Sounds(Name, Fileformat, FileURL) VALUES ("tom", "wav", "assets/sounds/tom.wav");
+INSERT INTO Sounds(Name, Fileformat, FileURL) VALUES ("tink", "wav", "assets/sounds/tink.wav");
+
+-- SOUNDS IN PRESETS
+INSERT INTO SoundsInPresets(SoundsId, PresetsId, Datakey) VALUES (1, 1, 71);
+INSERT INTO SoundsInPresets(SoundsId, PresetsId, Datakey) VALUES (2, 1, 65);
+INSERT INTO SoundsInPresets(SoundsId, PresetsId, Datakey) VALUES (3, 1, 83);
+INSERT INTO SoundsInPresets(SoundsId, PresetsId, Datakey) VALUES (4, 1, 68);
+INSERT INTO SoundsInPresets(SoundsId, PresetsId, Datakey) VALUES (5, 1, 70);
+INSERT INTO SoundsInPresets(SoundsId, PresetsId, Datakey) VALUES (6, 1, 72);
+INSERT INTO SoundsInPresets(SoundsId, PresetsId, Datakey) VALUES (7, 1, 74);
+INSERT INTO SoundsInPresets(SoundsId, PresetsId, Datakey) VALUES (8, 1, 75);
+INSERT INTO SoundsInPresets(SoundsId, PresetsId, Datakey) VALUES (9, 1, 76);

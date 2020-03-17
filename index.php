@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -50,8 +51,8 @@
   </div>
 
 
-<!-- Hämta ljud här med en include -->
-  <audio data-key="65" src="assets/sounds/clap.wav"></audio>
+  <!-- Hämta ljud här med en include -->
+  <!-- <audio data-key="65" src="assets/sounds/clap.wav"></audio>
   <audio data-key="83" src="assets/sounds/hihat.wav"></audio>
   <audio data-key="68" src="assets/sounds/kick.wav"></audio>
   <audio data-key="70" src="assets/sounds/openhat.wav"></audio>
@@ -59,7 +60,22 @@
   <audio data-key="72" src="assets/sounds/ride.wav"></audio>
   <audio data-key="74" src="assets/sounds/snare.wav"></audio>
   <audio data-key="75" src="assets/sounds/tom.wav"></audio>
-  <audio data-key="76" src="assets/sounds/tink.wav"></audio>
+  <audio data-key="76" src="assets/sounds/tink.wav"></audio> -->
+
+  <?php
+  include("assets/includes/db_connection.php");
+  include("assets/classes/sounds.php");
+
+  $sounds = new Sounds($dbh);
+
+  // echo "<pre>";
+  // print_r($sounds->fetchPreset());
+  // echo "</pre>";
+
+  foreach ($sounds->fetchPreset() as $preset) {
+    include('assets/includes/audio_data.php');
+  }
+  ?>
 
 
 </body>
