@@ -1,35 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jonis sampler</title>
-  <link rel="stylesheet" href="assets/style/style.css">
-  <script src="assets/app.js" defer></script>
+$page = (isset($_GET['page']) ? $_GET['page'] : '');
 
-<body>
-<div class="wrapper">
-
-
-  <div class="keys">
-    <?php
-    include("assets/includes/db_connection.php");
-    include("assets/classes/sounds.php");
-
-    $sounds = new Sounds($dbh);
-
-    // echo "<pre>";
-    // print_r($sounds->fetchPreset());
-    // echo "</pre>";
-
-    foreach ($sounds->fetchPreset() as $preset) {
-      include('assets/includes/audio_data.php');
-    }
-    ?>
-  </div>
-
-</div>
-</body>
-
-</html>
+switch ($page) {
+  case "home":
+    include("assets/views/home.php");
+    break;
+  case "edit":
+    include("assets/views/edit.php");
+    break;
+  case "create";
+    include("assets/views/create.php");
+    break;
+  default:
+    include("assets/views/home.php");
+}
