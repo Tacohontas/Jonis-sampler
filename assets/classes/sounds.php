@@ -1,6 +1,7 @@
 <?php
 
-class Sounds{
+class Sounds
+{
     private $dbh;
 
     function __construct($dbh)
@@ -11,7 +12,8 @@ class Sounds{
 
     public function fetchPreset()
     {
-        $query_string = "SELECT PresetsId, Datakey, FileURL FROM SoundsInPresets JOIN Presets ON PresetsId = Presets.id JOIN Sounds ON SoundsId = Sounds.Id;";
+
+        $query_string = "SELECT PresetsId, Keyname, FileURL, Sounds.Name FROM SoundsInPresets JOIN Presets ON PresetsId = Presets.id JOIN Sounds ON SoundsId = Sounds.Id;";
         // Ifall det här gick vägen så kommer den returnera ett objekt. Annars blir det false;
         $statementHandler = $this->dbh->prepare($query_string);
 
@@ -29,6 +31,13 @@ class Sounds{
         }
     }
 
+    public function convertToKeyName($datakey)
+    {
+        echo chr($datakey);
+    }
 
-
+    public function convertToKeyCode($keyname)
+    {
+        echo ord($keyname);
+    }
 }

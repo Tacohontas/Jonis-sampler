@@ -5,6 +5,8 @@
         audio.currentTime = 0; // Här rewindar vi filen till start ifall ljudfilen körs.
         audio.play(); // Kommer inte spelas igen ifall vi ljudfilen redan körs.
         key.classList.add('playing');
+        console.log(e);
+        
       }
   
       function removeTransition(e) {
