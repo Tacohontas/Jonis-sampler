@@ -33,7 +33,8 @@ class Sounds
 
     public function insertPreset($presetName)
     {
-        $query_string = "INSERT INTO Presets(Name, UsersId, GenresId) VALUES ('$presetName', 1, 1)";
+        $query_string = "INSERT INTO Presets(Name, UsersId, GenresId) VALUES ('$presetName', 1, 1)";  // FIX UsersiD och GenresId skall kunnas matas in.
+
         $statementHandler = $this->dbh->prepare($query_string);
         if ($statementHandler !== false) {
 
@@ -109,4 +110,5 @@ class Sounds
     {
         echo ord($keyname);
     }
+
 }

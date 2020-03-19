@@ -11,7 +11,7 @@ include('assets/includes/header.php')
 
 <div class="wrapper">
 
-    <form action="assets/handlers/handle_presets.php" method="get">
+    <form action="assets/handlers/add_presets.php" method="get">
         <div class="create_area keys"></div>
         <input type="text" name="preset_name" placeholder="Enter preset name..." required>
         <input type="submit" value="Create preset">

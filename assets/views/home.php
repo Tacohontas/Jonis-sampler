@@ -11,12 +11,10 @@ include('assets/includes/header.php')
 
         $sounds = new Sounds($dbh);
 
-        // echo "<pre>";
-        // print_r($sounds->fetchPreset());
-        // echo "</pre>";
 
+        // Fetch the drum pads from preset
         foreach ($sounds->fetchPreset() as $preset) {
-            include('assets/includes/audio_data.php');
+            include('assets/includes/drum_pad.php');
         }
         ?>
     </div>

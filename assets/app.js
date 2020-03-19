@@ -22,36 +22,20 @@ keys.forEach(key => key.addEventListener("transitionend", removeTransition));
 
 window.addEventListener("keydown", playSound);
 
-// -- Create mode ( create-php ) -- //
+
+// -- Create mode (create.php) -- //
 
 function createPad() {
-  // const inputNum = document.querySelector(`input[name="pad_amount"]`);
   const padContainer = document.querySelector(".create_area");
 
+  // Maximum pads allowed = 16.
   if (padContainer.childElementCount < 16) {
-//     padContainer.innerHTML += `
-//     <div class="key">
-//     <p>Choose sound</p>
-//         <select name="sound_${padContainer.childElementCount + 1}" >
-//             <option value="boom">boom</option>
-//             <option value="clap">clap</option>
-//             <option value="hihat">hihat</option>
-//             <option value="kick">kick</option>
-//             <option value="openhat">openhat</option>
-//             <option value="ride">ride</option>
-//             <option value="snare">snare</option>
-//             <option value="tink">tink</option>
-//             <option value="tom">tom</option>
-//         </select>
-//         <p>Choose keybind</p>
-//         <input type="text" name="keybind_${padContainer.childElementCount + 1}" maxlength="1">
-// </div>
-//     `;
     padContainer.innerHTML += `
     <div class="key">
+  <p>Pad ${padContainer.childElementCount}</p>
     <p>Choose sound</p>
     
-        <select name="sound_${padContainer.childElementCount + 1}" >
+        <select name="sound_${padContainer.childElementCount}" >
             <option value="boom">boom</option>
             <option value="clap">clap</option>
             <option value="hihat">hihat</option>
@@ -63,7 +47,7 @@ function createPad() {
             <option value="tom">tom</option>
         </select>
         <p>Choose keybind</p>
-        <input type="text" name="keybind_${padContainer.childElementCount + 1}" maxlength="1">
+        <input type="text" name="keybind_${padContainer.childElementCount}" maxlength="1">
 </div>
     `;
   } else {
