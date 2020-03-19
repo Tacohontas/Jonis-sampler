@@ -24,7 +24,7 @@
     color: #AF5339;
     background-color: #9a9a9c;
     text-shadow: 1px 1px black;
-    box-shadow: 4px 4px black;
+    box-shadow: 3px 3px black;
     border: 1px solid black;
 
 p{
@@ -34,7 +34,7 @@ p{
   }
   
   .playing {
-    transform: translate(4px, 4px);
+    transform: translate(3px, 3px);
     border-color: #ffc80080;
     box-shadow: none;
   }

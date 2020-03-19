@@ -10,10 +10,10 @@ class Sounds
     }
 
 
-    public function fetchPreset()
+    public function fetchPreset($presetId)
     {
 
-        $query_string = "SELECT PresetsId, Keyname, FileURL, Sounds.Name FROM SoundsInPresets JOIN Presets ON PresetsId = Presets.id JOIN Sounds ON SoundsId = Sounds.Id;";
+        $query_string = "SELECT PresetsId, Keyname, FileURL, Sounds.Name FROM SoundsInPresets JOIN Presets ON PresetsId = Presets.id JOIN Sounds ON SoundsId = Sounds.Id WHERE PresetsId = $presetId;";
         // Ifall det här gick vägen så kommer den returnera ett objekt. Annars blir det false;
         $statementHandler = $this->dbh->prepare($query_string);
 

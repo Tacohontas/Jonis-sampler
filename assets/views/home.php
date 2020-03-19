@@ -11,9 +11,15 @@ include('assets/includes/header.php')
 
         $sounds = new Sounds($dbh);
 
-
         // Fetch the drum pads from preset
-        foreach ($sounds->fetchPreset() as $preset) {
+        if (!empty($_GET["preset"])) {
+            $presetId = $_GET["preset"];
+        } else {
+            // Load default preset.
+            $presetId = 1;
+        }
+
+        foreach ($sounds->fetchPreset($presetId) as $preset) {
             include('assets/includes/drum_pad.php');
         }
         ?>
@@ -27,8 +33,8 @@ include('assets/includes/header.php')
 
         <select name="preset" id="">
             <option value="1">Preset 1</option>
-            <option value="2">Preset 2</option>
-            <option value="3">Preset 3</option>
+            <option value="28">Preset 28</option>
+            <!-- <option value="3">Preset 3</option> -->
         </select>
         <input type="submit" value="Choose">
     </form>
