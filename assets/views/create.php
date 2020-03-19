@@ -1,5 +1,7 @@
 <?php
-include('assets/includes/header.php')
+include('assets/includes/header.php');
+include('../includes/db_connection.php');
+include('../classes/sounds.php');
 ?>
 <h1>Create</h1>
 
@@ -9,10 +11,11 @@ include('assets/includes/header.php')
 
 
 
+
 <div class="wrapper">
 
-    <form action="assets/handlers/add_presets.php" method="POST">
-        <div class="create_area keys">
+    <form action="assets/handlers/add_presets.php" method="POST" enctype="multipart/form-data"> 
+    <div class="create_area keys">
         </div>
         <input type="text" name="preset_name" placeholder="Enter preset name..." required>
         <input type="submit" value="Create preset">
