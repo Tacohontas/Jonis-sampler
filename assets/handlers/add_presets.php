@@ -54,5 +54,5 @@ for ($i = 0; $i < count($soundsArray); $i++) {
     // Get Id from sound (in DB)
     $soundsId = $sounds->getSoundsId($soundsArray[$i]);
     // Upload to DB/SoundsInPresets
-    $sounds->insertSiP($soundsId['Id'], $presetId['Id'], $keyBinds[$i]);
+    $sounds->insertSiP($soundsId, $presetId['Id'], $keyBinds[$i]);
 }

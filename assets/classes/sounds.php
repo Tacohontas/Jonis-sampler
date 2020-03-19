@@ -95,11 +95,33 @@ class Sounds
             $statementHandler->execute();
 
             // Returnerar det vi fick från execute();
-            return $statementHandler->fetch(PDO::FETCH_ASSOC);
+            $result = $statementHandler->fetch(PDO::FETCH_ASSOC);
+            return $result['Id'];
+            die;
         } else {
             echo "Could not create database statement!";
             die;
         }
+    }
+
+    public function getSoundsURL($soundName){
+        $query_string = "SELECT FileURL FROM Sounds WHERE Name = '{$soundName}';";
+        $statementHandler = $this->dbh->prepare($query_string);
+        if ($statementHandler !== false) {
+
+            // $statementHandler->bindParam(":post_id", $this->post_id);
+            // Executear vår query;
+            $statementHandler->execute();
+
+            // Returnerar det vi fick från execute();
+            $result = $statementHandler->fetch(PDO::FETCH_ASSOC);
+            return $result['fileURL'];
+
+        } else {
+            echo "Could not create database statement!";
+            die;
+        }
+
     }
     public function convertToKeyName($datakey)
     {

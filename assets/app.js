@@ -1,7 +1,7 @@
 // -- Play sound from pads -- //
 
 function playSound(e) {
-  console.log("play running!");
+  // console.log("playSound() running!");
 
   const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
   const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
@@ -12,7 +12,7 @@ function playSound(e) {
 }
 
 function removeTransition(e) {
-  console.log("remove running!");
+  console.log("RemoveTransition(e) running!");
   if (e.propertyName !== "transform") return; // skip it if its not a transform
   this.classList.remove("playing");
 }
@@ -41,7 +41,7 @@ function createPad() {
 <p>Pad ${padContainer.childElementCount}</p>
 <p>Choose sound</p>
 
-    <select name="sound_${padContainer.childElementCount}" >
+    <select name="sound_${padContainer.childElementCount}" id="${padContainer.childElementCount}" onchange="getSoundFromPHP(this.value, this.id)">
         <option value="boom">boom</option>
         <option value="clap">clap</option>
         <option value="hihat">hihat</option>
@@ -120,7 +120,13 @@ function preview_setKeybind(value, id) {
   div_key.setAttribute("data-key", value.charCodeAt(0));
 }
 
-function getSoundFromPHP(){
+function getSoundFromPHP(value, id){
   //  alert("<?php hello(); ?>");
+  console.log("nu körs!");
+  console.log(id);
+  
+  const audioPreviewOutput = document.querySelector(`#audio_${id}`);
+  console.log(audioPreviewOutput);
 
+    audioPreviewOutput.src = `<?php echo $soundsId = $sounds->getSoundsId("${value}"); ?>`;
 }
