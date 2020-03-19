@@ -3,7 +3,7 @@ include('../includes/db_connection.php');
 include('../classes/sounds.php');
 
 echo "<pre>";
-print_r($_GET);
+print_r($_POST);
 echo "</pre>";
 
 
@@ -12,15 +12,15 @@ $soundsArray = array();
 $keyBinds = array();
 
 
-for ($i = 0; $i < count($_GET); $i++) {
+for ($i = 0; $i < count($_POST); $i++) {
     $soundIndex = "sound_{$i}";
     $keyBindIndex = "keybind_{$i}";
-    if (!empty($_GET[$soundIndex])) {
-        array_push($soundsArray, $_GET[$soundIndex]);
+    if (!empty($_POST[$soundIndex])) {
+        array_push($soundsArray, $_POST[$soundIndex]);
     }
 
-    if(!empty($_GET[$keyBindIndex])){
-        array_push($keyBinds, $_GET[$keyBindIndex]);
+    if(!empty($_POST[$keyBindIndex])){
+        array_push($keyBinds, $_POST[$keyBindIndex]);
     }
 
 }
@@ -43,12 +43,12 @@ $sounds = new Sounds($dbh);
 /* Upload to DB/Sounds (if sound isnt uploaded) */
 
 /*  Upload preset to DB */
-$sounds->insertPreset($_GET['preset_name']);
+$sounds->insertPreset($_POST['preset_name']);
 
 /* Upload to DB/SoundsInPresets */
 
 // Get Id from uploaded preset (from DB).
-$presetId = $sounds->getPresetId($_GET['preset_name']);
+$presetId = $sounds->getPresetId($_POST['preset_name']);
 
 for ($i = 0; $i < count($soundsArray); $i++) {
     // Get Id from sound (in DB)
