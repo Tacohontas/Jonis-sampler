@@ -34,7 +34,10 @@ include('assets/includes/header.php')
         <select name="preset" id="">
             <option value="1">Preset 1</option>
             <option value="28">Preset 28</option>
-            <!-- <option value="3">Preset 3</option> -->
+            <?php
+            // FIX: fetch all presets with names etc.
+
+            ?>
         </select>
         <input type="submit" value="Choose">
     </form>
