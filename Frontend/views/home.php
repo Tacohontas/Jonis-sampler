@@ -1,13 +1,13 @@
 <?php
-include('assets/includes/header.php')
+include('includes/header.php')
 ?>
 <div class="wrapper">
 
 
     <div class="keys">
         <?php
-        include("assets/includes/db_connection.php");
-        include("assets/classes/sounds.php");
+        include('../API/config/database_connection.php');
+        include('../API/object/sounds.php');
 
         $sounds = new Sounds($dbh);
 
@@ -20,7 +20,7 @@ include('assets/includes/header.php')
         }
 
         foreach ($sounds->fetchPreset($presetId) as $preset) {
-            include('assets/includes/drum_pad.php');
+            include('includes/drum_pad.php');
         }
         ?>
     </div>
@@ -45,5 +45,5 @@ include('assets/includes/header.php')
 </div>
 
 <?php
-include('assets/includes/footer.php')
+include('includes/footer.php')
 ?>

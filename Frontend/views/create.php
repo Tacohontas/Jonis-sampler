@@ -1,7 +1,7 @@
 <?php
-include('assets/includes/header.php');
-include('assets/includes/db_connection.php');
-include('assets/classes/sounds.php');
+include('includes/header.php');
+include('../API/config/database_connection.php');
+include('../API/object/sounds.php');
 
 $sounds = new Sounds($dbh);
 echo $soundsId = $sounds->getSoundsId("boom");
@@ -17,8 +17,10 @@ echo $soundsId = $sounds->getSoundsId("boom");
 
 <div class="wrapper">
 
-    <form action="assets/handlers/add_presets.php" method="POST" enctype="multipart/form-data"> 
-    <div class="create_area keys">
+    <form action="../API/sounds/addPreset.php" method="POST" enctype="multipart/form-data">
+        <div class="create_area keys">
+
+
         </div>
         <input type="text" name="preset_name" placeholder="Enter preset name..." required>
         <input type="submit" value="Create preset">

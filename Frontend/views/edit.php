@@ -1,5 +1,5 @@
 <?php
-include('assets/includes/header.php')
+include('includes/header.php')
 ?>
 
 
@@ -13,5 +13,5 @@ include('assets/includes/header.php')
 </div>
 
 <?php
-include('assets/includes/footer.php')
+include('includes/footer.php')
 ?>

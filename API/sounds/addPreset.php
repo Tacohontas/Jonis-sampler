@@ -1,12 +1,12 @@
 <?php
-include('../includes/db_connection.php');
-include('../classes/sounds.php');
+include('../config/database_connection.php');
+include('../object/sounds.php');
 
 echo "<pre>";
 print_r($_POST);
 echo "</pre>";
 
-
+die;
 // Get all sounds & keybinds
 $soundsArray = array();
 $keyBinds = array();

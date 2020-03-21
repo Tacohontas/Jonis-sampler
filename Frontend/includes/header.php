@@ -11,8 +11,8 @@
                 echo $title;
             }
             ?></title>
-    <link rel="stylesheet" href="assets/style/style.css">
-    <script src="assets/app.js" defer></script>
+    <link rel="stylesheet" href="style/style.css">
+    <script src="app.js" defer></script>
 
 <body>
 <a href="index.php?page=home">hem</a>
