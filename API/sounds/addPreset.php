@@ -6,6 +6,12 @@ echo "<pre>";
 print_r($_POST);
 echo "</pre>";
 
+
+echo "<pre>";
+print_r($_FILES);
+echo "</pre>";
+
+
 die;
 // Get all sounds & keybinds
 $soundsArray = array();
@@ -56,3 +62,4 @@ for ($i = 0; $i < count($soundsArray); $i++) {
     // Upload to DB/SoundsInPresets
     $sounds->insertSiP($soundsId, $presetId['Id'], $keyBinds[$i]);
 }
+

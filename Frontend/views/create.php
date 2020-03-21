@@ -23,7 +23,7 @@ echo $soundsId = $sounds->getSoundsId("boom");
 
         </div>
         <input type="text" name="preset_name" placeholder="Enter preset name..." required>
-        <input type="submit" value="Create preset">
+        <input type="submit" name="submit" value="Create preset">
     </form>
 </div>
 

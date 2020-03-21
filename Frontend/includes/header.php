@@ -12,7 +12,7 @@
             }
             ?></title>
     <link rel="stylesheet" href="style/style.css">
-    <script src="app.js" defer></script>
+    <script src="js/dist/app.js" defer></script>
 
 <body>
 <a href="index.php?page=home">hem</a>
